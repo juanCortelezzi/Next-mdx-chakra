@@ -15,7 +15,9 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-        "@styles/*": ["styles/*"]
+        "@styles/*": ["styles/*"],
+        "@components/*": ["src/components/*"],
+        "@chakraTheme": ["src/chakraTheme.ts"]
     }
   },
   "include": ["next-env.d.ts", "mdx.d.ts", "**/*.ts", "**/*.tsx"],
