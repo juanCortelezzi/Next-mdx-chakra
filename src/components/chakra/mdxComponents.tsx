@@ -1,12 +1,34 @@
+import { Heading } from "@chakra-ui/react"
+import { ReactChildren } from "react"
 import Highlight, { defaultProps, Language } from 'prism-react-renderer'
 import CodeTheme from 'prism-react-renderer/themes/vsDark'
+
+interface IMdxProps {
+    children: ReactChildren
+}
+
+export function H1({ children }: IMdxProps): JSX.Element {
+    return (<Heading as="h1" size="4xl">{children}</Heading>)
+}
+
+export function H2({ children }: IMdxProps): JSX.Element {
+    return (<Heading as="h2" size="3xl">{children}</Heading>)
+}
+
+export function H3({ children }: IMdxProps): JSX.Element {
+    return (<Heading as="h3" size="2xl">{children}</Heading>)
+}
+
+export function H4({ children }: IMdxProps): JSX.Element {
+    return (<Heading as="h4" size="1xl">{children}</Heading>)
+}
 
 interface IProps {
     children: any;
     className: string;
 }
 
-function CodeBlock({ children, className }: IProps): JSX.Element {
+export function CodeBlock({ children, className }: IProps): JSX.Element {
     const language = className.replace(/language-/, '')
 
     return (
@@ -29,4 +51,3 @@ function CodeBlock({ children, className }: IProps): JSX.Element {
     )
 }
 
-export default CodeBlock

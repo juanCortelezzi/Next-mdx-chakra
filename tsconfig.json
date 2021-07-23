@@ -17,6 +17,8 @@
     "paths": {
         "@styles/*": ["styles/*"],
         "@components/*": ["src/components/*"],
+        "@typedefs/*": ["src/typedefs/*"],
+        "@lib/*": ["src/lib/*"],
         "@chakraTheme": ["src/chakraTheme.ts"]
     }
   },

@@ -5,8 +5,7 @@ import { MDXProvider } from '@mdx-js/react'
 import { ChakraProvider } from "@chakra-ui/react"
 import Theme from "@chakraTheme"
 import type { AppProps } from 'next/app'
-import CodeBlock from "@components/codeBlock"
-import { H1, H2, H3, H4 } from "@components/chakraComponents"
+import { H1, H2, H3, H4, CodeBlock } from "@components/chakra/mdxComponents"
 
 
 const components = {
