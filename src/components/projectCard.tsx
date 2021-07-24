@@ -11,8 +11,8 @@ const container = {
 interface IProps {
     name: string;
     description: string;
-    created_at: Date;
-    updated_at: Date;
+    created_at: string;
+    updated_at: string;
     html_url: string
 }
 
