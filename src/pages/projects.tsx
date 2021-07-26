@@ -1,4 +1,6 @@
 import Head from "next/head";
+import { useState } from "react";
+import Fuse from "fuse.js";
 import { MotionFlex } from "@components/chakra/motionComponents";
 import Navbar from "@components/navbar";
 import ProjectCard from "@components/projectCard";
@@ -12,24 +14,20 @@ import {
     VisuallyHidden,
     Box,
 } from "@chakra-ui/react";
-import Fuse from "fuse.js";
-import { useState } from "react";
+import { IProject, IRawProject } from "@typedefs/projects"
+import { containerAnimation } from "@typedefs/constants"
 
-const container = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { staggerChildren: 0.3 } },
-};
 
-export default function Projects({ data }: { data: any }): JSX.Element {
+export default function Projects({ projects }: { projects: IProject[] }): JSX.Element {
     const [search, setSearch] = useState("");
 
     const options = { keys: ["name", "description"] };
 
-    const fuse = new Fuse(data, options);
+    const fuse = new Fuse(projects, options);
     const results = fuse.search(search);
-    let dataResults = results.map((r: any): any => r.item);
+    let dataResults = results.map((r) => r.item);
     if (dataResults.length < 1) {
-        dataResults = data;
+        dataResults = projects;
     }
 
     return (
@@ -44,7 +42,7 @@ export default function Projects({ data }: { data: any }): JSX.Element {
             p={4}
             pt={0}
             basis={0}
-            variants={container}
+            variants={containerAnimation}
             exit="initial"
             initial="initial"
             animate="animate"
@@ -80,14 +78,10 @@ export default function Projects({ data }: { data: any }): JSX.Element {
                 </FormControl>
             </form>
             <Box w="full">
-                {dataResults.map((d: any) => (
+                {dataResults.map((d) => (
                     <ProjectCard
                         key={d.id}
-                        name={d.name}
-                        description={d.description}
-                        created_at={d.created_at}
-                        updated_at={d.updated_at}
-                        html_url={d.html_url}
+                        project={d}
                     />
                 ))}
             </Box>
@@ -96,13 +90,29 @@ export default function Projects({ data }: { data: any }): JSX.Element {
 }
 
 export async function getServerSideProps() {
-    const data = await fetch("https://api.github.com/users/juancortelezzi/repos").then((r) =>
-        r.json()
-    );
+    const rawUnparsedProjects = await fetch("https://api.github.com/users/juancortelezzi/repos")
+    const rawProjects = await rawUnparsedProjects.json()
+
+    if (!rawProjects) {
+        return {
+            projects: []
+        }
+    }
+
+    const projects = rawProjects.reduce((data: IProject[], project: IRawProject): IProject[] => {
+        return [...data, {
+            id: project.id,
+            name: project.name,
+            description: project.description,
+            createdAt: project.created_at,
+            updatedAt: project.updated_at,
+            url: project.html_url
+        }]
+    }, [])
 
     return {
         props: {
-            data: await data,
+            projects,
         },
     };
 }
