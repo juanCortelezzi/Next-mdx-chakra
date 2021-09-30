@@ -1,16 +1,18 @@
 import { Box, Center } from "@chakra-ui/react";
 import Image from "next/image";
+
 interface IProps {
-  margin: number;
   src: string;
-  shadow: string;
+  alt: string;
 }
-export default function PostImage({ margin, src, shadow }: IProps) {
+
+export default function PostImage({ src, alt }: IProps) {
   return (
-    <Center my={margin * 3} boxShadow={shadow}>
+    <Center>
       <Box w="full" borderRadius="lg" overflow="hidden">
         <Image
-          src={`https:${src}`}
+          src={src}
+          alt={alt}
           width={2000}
           height={1300}
           layout="responsive"
