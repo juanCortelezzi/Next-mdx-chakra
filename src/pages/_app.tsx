@@ -1,5 +1,3 @@
-import "@styles/globals.css";
-
 //@ts-ignore
 import { MDXProvider } from "@mdx-js/react";
 import { ChakraProvider } from "@chakra-ui/react";
