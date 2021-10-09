@@ -1,8 +1,7 @@
 import Head from "next/head";
 import { useState } from "react";
 import Fuse from "fuse.js";
-import { MotionFlex } from "@components/chakra/motionComponents";
-import Navbar from "@components/navbar";
+import Layout from "@components/layout";
 import ProjectCard from "@components/projectCard";
 import {
   Input,
@@ -16,7 +15,6 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { IProject, IRawProject } from "@typedefs/projects";
-import { containerAnimation } from "@typedefs/constants";
 
 export default function Projects({
   projects,
@@ -29,27 +27,11 @@ export default function Projects({
     search === "" ? projects : fuse.search(search).map((r) => r.item);
 
   return (
-    <MotionFlex
-      as="main"
-      justify="center"
-      align="center"
-      maxW="4xl"
-      w="full"
-      direction="column"
-      mx="auto"
-      p={4}
-      pt={0}
-      basis={0}
-      variants={containerAnimation}
-      exit="initial"
-      initial="initial"
-      animate="animate"
-    >
+    <Layout>
       <Head>
         <title>Next Blog</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar />
       <form
         style={{ width: "100%" }}
         onSubmit={(e) => {
@@ -82,7 +64,7 @@ export default function Projects({
           <ProjectCard key={d.id} project={d} />
         ))}
       </Box>
-    </MotionFlex>
+    </Layout>
   );
 }
 
