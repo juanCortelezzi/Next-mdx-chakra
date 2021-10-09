@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { useState } from "react";
 import Fuse from "fuse.js";
 import Layout from "@components/layout";
@@ -27,11 +26,7 @@ export default function Projects({
     search === "" ? projects : fuse.search(search).map((r) => r.item);
 
   return (
-    <Layout>
-      <Head>
-        <title>Next Blog</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Layout title="Projects" desc="My coding projects">
       <form
         style={{ width: "100%" }}
         onSubmit={(e) => {

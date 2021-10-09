@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Layout from "@components/layout";
 import { getAllFilesFrontMatter } from "@lib/mdx";
 import {
@@ -31,11 +30,7 @@ export default function Blog({
   }
 
   return (
-    <Layout>
-      <Head>
-        <title>Next Blog</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Layout title="Posts" desc="All the blogs written by Juan">
       <form
         style={{ width: "100%" }}
         onSubmit={(e) => {

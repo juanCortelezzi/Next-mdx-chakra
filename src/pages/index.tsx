@@ -1,16 +1,10 @@
-import Head from "next/head";
 import { Heading, Text } from "@chakra-ui/react";
 import { LinkLocal } from "@components/chakra/links";
 import Layout from "@components/layout";
 
 export default function Home() {
   return (
-    <Layout>
-      <Head>
-        <title>Juanbs Blog</title>
-        <meta name="description" content="My new blog in markdown" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Layout title="Home" desc="My personal Blog in markdown">
       <Heading as="h1" size="xl">
         Juan Bautista Cortelezzi
       </Heading>
