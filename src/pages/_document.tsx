@@ -7,12 +7,6 @@ export default class Document extends NextDocument {
     return (
       <Html lang="en">
         <Head>
-          <title key="title">Juanbs Blog</title>
-          <meta
-            key="description"
-            name="description"
-            content="My new blog in markdown"
-          />
           <link key="favicon" rel="icon" href="/favicon.ico" />
         </Head>
         <body>
