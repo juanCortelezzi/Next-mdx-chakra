@@ -25,7 +25,7 @@ export default function Layout({ children, title, desc }: IProps) {
       animate="animate"
     >
       <Head>
-        <title key="title">Juan's Blog: {title}</title>
+        <title key="title">Juan&apos;s Blog: {title}</title>
         <meta key="description" name="description" content={desc} />
       </Head>
       <Navbar />

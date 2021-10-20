@@ -6,12 +6,12 @@ export default function Home() {
   return (
     <Layout title="Home" desc="My personal Blog in markdown">
       <Heading as="h1" size="xl">
-        Hey, i'm Juan Cortelezzi
+        Hey, i&apos;m Juan Cortelezzi
       </Heading>
       <Text mt={2}>
-        I'm a self taught web developer, currently studying software engeneering
-        at UADE University. You've found my personal slice of the internet, feel
-        free to look around.
+        I&apos;m a self taught web developer, currently studying software
+        engeneering at UADE University. You&apos;ve found my personal slice of
+        the internet, feel free to look around.
       </Text>
       <Text mt={2}>
         In this page you will be able to see my current project by clicking on

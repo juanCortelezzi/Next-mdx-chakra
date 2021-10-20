@@ -36,6 +36,7 @@ export default function Post({
       </Heading>
       <Box mb={4} borderRadius="lg" overflow="hidden">
         <Image
+          alt={frontMatter.title}
           src={frontMatter.image}
           width={2000}
           height={1000}
