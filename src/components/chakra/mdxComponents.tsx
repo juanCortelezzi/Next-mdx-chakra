@@ -17,12 +17,15 @@ import {
   Td,
   Tr,
   Th,
+  chakra,
 } from "@chakra-ui/react";
 import { ReactNode } from "react";
 import Highlight, { defaultProps, Language } from "prism-react-renderer";
 import CodeTheme from "prism-react-renderer/themes/vsDark";
 import { LinkExternal } from "@components/chakra/links";
 import PostImage from "@components/posts/image";
+
+const ChakraHl = chakra(Highlight);
 
 interface IMdxProps {
   children: ReactNode;
@@ -109,16 +112,22 @@ function CodeBlock({ children, className }: IMdxCodeProps): JSX.Element {
   return (
     <Center my={margin} overflow="scroll">
       <Box w="full" h="full" borderRadius="lg">
-        <Highlight
+        <ChakraHl
           {...defaultProps}
           code={children.trim()}
           language={className.replace(/language-/, "") as Language}
           theme={CodeTheme}
+          sx={{ width: "full", minWidth: "100%" }}
         >
           {({ className, style, tokens, getLineProps, getTokenProps }) => (
             <Code
               className={className}
-              style={{ ...style, padding: "20px", width: "100%" }}
+              style={{
+                ...style,
+                padding: "20px",
+                width: "full",
+                minWidth: "100%",
+              }}
             >
               {tokens.map(
                 (line, i): JSX.Element => (
@@ -131,7 +140,7 @@ function CodeBlock({ children, className }: IMdxCodeProps): JSX.Element {
               )}
             </Code>
           )}
-        </Highlight>
+        </ChakraHl>
       </Box>
     </Center>
   );
