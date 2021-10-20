@@ -6,11 +6,12 @@ export default function Home() {
   return (
     <Layout title="Home" desc="My personal Blog in markdown">
       <Heading as="h1" size="xl">
-        Juan Bautista Cortelezzi
+        Hey, i'm Juan Cortelezzi
       </Heading>
       <Text mt={2}>
-        Welcome to my slice of the internet. My name is Juan Bautista, I'm an
-        Argentinian junior software developer and student at UADE university.
+        I'm a self taught web developer, currently studying software engeneering
+        at UADE University. You've found my personal slice of the internet, feel
+        free to look around.
       </Text>
       <Text mt={2}>
         In this page you will be able to see my current project by clicking on
