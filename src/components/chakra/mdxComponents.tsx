@@ -116,7 +116,10 @@ function CodeBlock({ children, className }: IMdxCodeProps): JSX.Element {
           theme={CodeTheme}
         >
           {({ className, style, tokens, getLineProps, getTokenProps }) => (
-            <Code className={className} style={{ ...style, padding: "20px" }}>
+            <Code
+              className={className}
+              style={{ ...style, padding: "20px", width: "100%" }}
+            >
               {tokens.map(
                 (line, i): JSX.Element => (
                   <div key={i} {...getLineProps({ line, key: i })}>
