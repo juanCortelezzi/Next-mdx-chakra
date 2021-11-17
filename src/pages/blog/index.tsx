@@ -15,22 +15,21 @@ import IFrontMatter from "@typedefs/frontMatter";
 import PostCard from "@components/posts/card";
 import { useState } from "react";
 import Fuse from "fuse.js";
+import Navbar from "@components/navbar";
 
-export default function Blog({
-  posts,
-}: {
+interface Props {
   posts: IFrontMatter[];
-}): JSX.Element {
+}
+
+export default function Blog({ posts }: Props): JSX.Element {
   const [search, setSearch] = useState("");
   const fuse = new Fuse(posts, { keys: ["title", "date"] });
-  const results = fuse.search(search);
-  let postResults = results.map((r) => r.item);
-  if (postResults.length < 1) {
-    postResults = posts;
-  }
+  const postResults =
+    search === "" ? posts : fuse.search(search).map((r) => r.item);
 
   return (
     <Layout title="Posts" desc="All the blogs written by Juan">
+      <Navbar />
       <form
         style={{ width: "100%" }}
         onSubmit={(e) => {

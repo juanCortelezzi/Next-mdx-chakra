@@ -1,10 +1,12 @@
 import { Heading, Text } from "@chakra-ui/react";
 import { LinkLocal } from "@components/chakra/links";
 import Layout from "@components/layout";
+import Navbar from "@components/navbar";
 
 export default function Home() {
   return (
     <Layout title="Home" desc="My personal Blog in markdown">
+      <Navbar />
       <Heading as="h1" size="xl">
         Hey, i&apos;m Juan Cortelezzi
       </Heading>

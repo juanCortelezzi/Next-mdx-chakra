@@ -14,12 +14,13 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { IProject, IRawProject } from "@typedefs/projects";
+import Navbar from "@components/navbar";
 
-export default function Projects({
-  projects,
-}: {
+interface Props {
   projects: IProject[];
-}): JSX.Element {
+}
+
+export default function Projects({ projects }: Props): JSX.Element {
   const [search, setSearch] = useState("");
   const fuse = new Fuse(projects, { keys: ["name", "description"] });
   const results =
@@ -27,6 +28,7 @@ export default function Projects({
 
   return (
     <Layout title="Projects" desc="My coding projects">
+      <Navbar />
       <form
         style={{ width: "100%" }}
         onSubmit={(e) => {
@@ -64,28 +66,23 @@ export default function Projects({
 }
 
 export async function getServerSideProps() {
-  const rawUnparsedProjects = await fetch(
+  const rawProjects = await fetch(
     "https://api.github.com/users/juancortelezzi/repos"
-  );
-  const rawProjects = await rawUnparsedProjects.json();
+  ).then((d) => d.json());
 
-  if (!rawProjects) {
-    return {
-      projects: [],
-    };
-  }
+  if (!rawProjects) return { projects: [] };
 
   const projects = rawProjects.reduce(
-    (data: IProject[], project: IRawProject): IProject[] => {
+    (projects: IProject[], p: IRawProject): IProject[] => {
       return [
-        ...data,
+        ...projects,
         {
-          id: project.id,
-          name: project.name,
-          description: project.description,
-          createdAt: project.created_at,
-          updatedAt: project.updated_at,
-          url: project.html_url,
+          id: p.id,
+          name: p.name,
+          description: p.description,
+          createdAt: p.created_at,
+          updatedAt: p.updated_at,
+          url: p.html_url,
         },
       ];
     },

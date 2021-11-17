@@ -1,35 +1,18 @@
-import Head from "next/head";
 import { GetStaticPropsContext } from "next";
 import { MDXRemote } from "next-mdx-remote";
 import Navbar from "@components/posts/navbar";
-import { MotionBox } from "@components/chakra/motionComponents";
 import { getFiles, getFileBySlug, IGetFileBySlugResponse } from "@lib/mdx";
-import { containerAnimation } from "@typedefs/constants";
 import { Heading, Box, HStack, Text } from "@chakra-ui/react";
 import { parseDate } from "@lib/parseDate";
 import Image from "next/image";
+import Layout from "@components/layout";
 
 export default function Post({
   mdxSource,
   frontMatter,
 }: IGetFileBySlugResponse): JSX.Element {
   return (
-    <MotionBox
-      as="main"
-      maxW="4xl"
-      w="full"
-      mx="auto"
-      p={4}
-      pt={0}
-      variants={containerAnimation}
-      exit="initial"
-      initial="initial"
-      animate="animate"
-    >
-      <Head>
-        <title>Next Blog</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Layout title="Posts" desc="All the blogs written by Juan">
       <Navbar />
       <Heading as="h1" size="2xl" my={8}>
         {frontMatter.title}
@@ -50,7 +33,7 @@ export default function Post({
         </Text>
       </HStack>
       <MDXRemote {...mdxSource} />
-    </MotionBox>
+    </Layout>
   );
 }
 

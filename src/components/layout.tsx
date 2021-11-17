@@ -1,16 +1,15 @@
 import { containerAnimation } from "@typedefs/constants";
 import { MotionBox } from "@components/chakra/motionComponents";
-import Navbar from "@components/navbar";
 import { ReactNode } from "react";
 import Head from "next/head";
 
-interface IProps {
+interface Props {
   children: ReactNode;
   title: string;
   desc: string;
 }
 
-export default function Layout({ children, title, desc }: IProps) {
+export default function Layout({ children, title, desc }: Props) {
   return (
     <MotionBox
       as="main"
@@ -28,7 +27,6 @@ export default function Layout({ children, title, desc }: IProps) {
         <title key="title">Juan&apos;s Blog: {title}</title>
         <meta key="description" name="description" content={desc} />
       </Head>
-      <Navbar />
       {children}
     </MotionBox>
   );
