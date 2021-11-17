@@ -5,13 +5,13 @@ import {
 } from "@chakra-ui/react";
 import { ReactNode } from "react";
 
-interface IProps {
+interface Props {
   href: string;
   children: ReactNode;
   [index: string]: any;
 }
 
-export function LinkExternal({ href, children, ...rest }: IProps) {
+export function LinkExternal({ href, children, ...rest }: Props) {
   return (
     <ChakraLink href={href} color="teal.500" isExternal {...rest}>
       {children}
@@ -19,7 +19,7 @@ export function LinkExternal({ href, children, ...rest }: IProps) {
   );
 }
 
-export function LinkLocal({ href, children, ...rest }: IProps): JSX.Element {
+export function LinkLocal({ href, children, ...rest }: Props): JSX.Element {
   return (
     <NextLink href={href} passHref>
       <ChakraLink {...rest}>{children}</ChakraLink>
@@ -27,7 +27,7 @@ export function LinkLocal({ href, children, ...rest }: IProps): JSX.Element {
   );
 }
 
-export function LinkOverlay({ href, children, ...rest }: IProps): JSX.Element {
+export function LinkOverlay({ href, children, ...rest }: Props): JSX.Element {
   return (
     <NextLink href={href} passHref>
       <ChakraLinkOverlay {...rest}>{children}</ChakraLinkOverlay>

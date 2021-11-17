@@ -5,7 +5,11 @@ import { parseDate } from "@lib/parseDate";
 import { IProject } from "@typedefs/projects";
 import { containerAnimation } from "@typedefs/constants";
 
-export default function ProjectCard({ project }: { project: IProject }) {
+interface Props {
+  project: IProject;
+}
+
+export default function ProjectCard({ project }: Props) {
   const shadow = useColorModeValue("2xl", "none");
   const borderColor = useColorModeValue("gray.300", "gray.700");
   const textColor = useColorModeValue("gray.500", "gray.400");

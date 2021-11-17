@@ -14,11 +14,11 @@ const container = {
   },
 };
 
-export default function PostCard({
-  post,
-}: {
+interface Props {
   post: IFrontMatter;
-}): JSX.Element {
+}
+
+export default function PostCard({ post }: Props): JSX.Element {
   const shadow = useColorModeValue("2xl", "none");
   const borderColor = useColorModeValue("gray.400", "gray.700");
   const textColor = useColorModeValue("gray.500", "gray.400");
